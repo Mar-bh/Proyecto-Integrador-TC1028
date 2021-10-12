@@ -1,6 +1,6 @@
 import random
 
-def crearFilaEc(n): #n es entero y su range es entre 2 y 8
+def crear_filas_ecuaciones(n): #n es entero y su range es entre 2 y 8
 
     variables = {1:"a",2:"b",3:"c",4:"d",5:"e",6:"f",7:"g",8:"h"}
     valores = {}  #valor de cada variable
@@ -36,8 +36,23 @@ def crearFilaEc(n): #n es entero y su range es entre 2 y 8
             
         print(f"{ecuacion} = {suma}")
         #print(coeficiente)
+    return valores
+
+def verificar_soluciones(soluciones):
+    #print(soluciones)
+    for valor in soluciones:
+        print(soluciones[valor])
+
+
+n = 0
+while (n<2 or n>8):
+   n = int(input("Ingrese el número de variables: "))
+
+diccionario_valores = crear_filas_ecuaciones(n) 
+verificar_soluciones(diccionario_valores)
+
 
 
 #crearFilaEc(2)
 #crearFilaEc(3)
-crearFilaEc(4)
+
