@@ -1,55 +1,58 @@
 import random
 
-def crear_filas_ecuaciones(n): #n es entero y su range es entre 2 y 8
-
-    variables = {1:"a",2:"b",3:"c",4:"d",5:"e",6:"f",7:"g",8:"h"}
-    valores = {}  #valor de cada variable
-    coeficiente = [] #lista de coeficientes
-    ecuacion = ""
-    suma = 0
-    
-    for i in range (1,n+1):
-        valor = random.randint(-10,10)
-        valores[variables[i]] = valor
+def crear_filas_ecuaciones(n,variables,valores): #n es entero y su range es entre 2 y 8
     
    # print(valores)
     for k in range(0,n):
         ecuacion = ""
-        coeficiente = []
+        lista_coeficientes = [] #lista de coeficientes
         suma = 0
         
         for i in range (1,n+1):
-            coeficiente.append(random.randint(1,10))
+            lista_coeficientes.append(random.randint(1,10))
             espositivo = random.randint(0,1)
             #print(espositivo)
             
             if espositivo == 0:
-                coeficiente[i-1] = coeficiente[i-1]*-1
+                lista_coeficientes[i-1] = lista_coeficientes[i-1]*-1
                       
-            if coeficiente[i-1] >= 1 and i>1:
-                ecuacion = ecuacion+"+"+(str(coeficiente[i-1])+variables[i])
+            if lista_coeficientes[i-1] >= 1 and i>1:
+                ecuacion = ecuacion+"+"+(str(lista_coeficientes[i-1])+variables[i])
             else:
-                ecuacion = ecuacion+(str(coeficiente[i-1])+variables[i])
+                ecuacion = ecuacion+(str(lista_coeficientes[i-1])+variables[i])
             
-            suma += coeficiente[i-1]*valores[variables[i]]
+            suma += lista_coeficientes[i-1]*valores[variables[i]]
             #print(suma)
             
         print(f"{ecuacion} = {suma}")
         #print(coeficiente)
-    return valores
 
-def verificar_soluciones(soluciones):
+def verificar_soluciones(valores,variables):
     #print(soluciones)
-    for valor in soluciones:
-        print(soluciones[valor])
+    soluciones = {}
+    for i in range(1, len(valores) + 1):
+        soluciones[variables[i]] = int(input(f"El valor de la variable {variables[i]}: "))
+    
+    if soluciones == valores:
+        print("Solución correcta") 
+    else:
+        print("Solución incorrecta, los valores correctos son: ") 
+        for i in range(1, len(valores) + 1):
+            print(f"{variables[i]} = {valores[variables[i]]}")
 
-
+variables = {1:"a",2:"b",3:"c",4:"d",5:"e",6:"f",7:"g",8:"h"}
+valores = {}  #valor de cada variable
 n = 0
 while (n<2 or n>8):
    n = int(input("Ingrese el número de variables: "))
 
-diccionario_valores = crear_filas_ecuaciones(n) 
-verificar_soluciones(diccionario_valores)
+for i in range (1,n+1):
+    valor = random.randint(-10,10)
+    valores[variables[i]] = valor
+    
+
+crear_filas_ecuaciones(n,variables,valores) 
+verificar_soluciones(valores,variables)
 
 
 
