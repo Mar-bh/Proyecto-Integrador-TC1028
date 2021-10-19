@@ -32,15 +32,15 @@ def verificar_soluciones(valores,variables):   #función que pide y verifica la 
     #print(soluciones)
     soluciones = {}                               #diccionario vacío en el que se guardaran las soluciones dadas
     for i in range(1, len(valores) + 1):
-        respuesta = "11" 
+        respuesta = "" 
         while type(respuesta) == str:
             respuesta = input(f"El valor de la variable {variables[i]}: ")
-            if respuesta.isnumeric() ==  False:
-                respuesta = "-11"  
+            if respuesta.isnumeric() ==  False:   #is alpha()
+                respuesta = ""  
                 print("El valor de la variable debe ser un entero")          
             else:   
                 respuesta = int(respuesta)                     
-                soluciones[variables[i]] = respuesta      #se pide que el usuario ingrese la solución y se agrega al diccionario
+            soluciones[variables[i]] = respuesta      #se pide que el usuario ingrese la solución y se agrega al diccionario
                                                                                                 #la variables es el apendice, la solución el valor asignado a la variable
     if soluciones == valores:                                                                   #verificamos si el diccionario original con los valores es igual al nuevo creado
         print("Solución correcta")                                                              #si son iguales, dio la solución correcta
